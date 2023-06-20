@@ -1,0 +1,61 @@
+html, body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    background-image: url("/images/seaside.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    backdrop-filter: blur(5px);
+}
+
+li {
+    margin: 10px;
+    padding: 10px;
+}
+
+.active {
+    background-color: rgb(72, 243, 255);
+}
+
+.card-header {
+    padding: 0;
+}
+
+.card-header img {
+    height: 250px;
+    width: -webkit-fill-available;
+}
+
+.card-footer div {
+    display: flex;
+    float: right;
+    font-size: 14px;
+}
+
+.card-footer div > p {
+    margin-left: 15px;
+}
+
+.card-footer div > p i {
+    padding-right: 5px;
+}
+
+#naturalContainer {
+    display: none;
+}
+
+#deleteBtnDiv {
+    margin: 10px 0px; 
+    width: 100%; 
+    background-color: white; 
+    border-radius: 5px;
+}
+
+
+/* reboot css override */
+
+a {
+    text-decoration: none;
+}

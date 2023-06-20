@@ -1,0 +1,100 @@
+#sliderBody{
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#slider-section {
+    height: auto;
+    background-color: transparent;
+    color: black;
+    padding-top: 20px;
+    margin: 100px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 1600px;
+    margin: auto;
+}
+
+.subcontainer{
+    margin: auto;
+}
+
+.slider-wrapper{
+    position: relative;
+}
+
+.slider-wrapper h3 {
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.previousButton, .nextButton {
+    padding: 2px;
+    width: 30px;
+    cursor: pointer;
+    border-radius: 50%;
+    outline: none;
+    transition: 0.7s ease-in-out;
+    border: 3px solid white;
+    background-color: black;
+    box-shadow: 0 0 5px #bbb;
+    position: absolute;
+    top: 50%;
+}
+
+.previousButton {
+    left: 2%;
+}
+
+.nextButton {
+    right: 2%;
+}
+
+.previousButton:hover, .nextButton:hover {
+    border: 3px solid greenyellow;
+}
+
+.controls i {
+    color: white;
+    font-size: 1rem;
+}
+
+.tns-nav{
+    text-align: right;
+}
+
+.tns-nav button{
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: black;
+    margin-left: 15px;
+}
+
+.tns-nav-active {
+    background-color: gray;
+    border: 2px solid greenyellow;
+}
+
+.slide {
+    width: 303px;
+    height: fit-content;
+    text-align: center;
+}
+
+.slide img {
+    width: 300px;
+    padding: 10px;
+    height: 210px;
+}
+
+@media(max-width:1600px){
+    .container{
+        width: 100%;
+    }
+}
