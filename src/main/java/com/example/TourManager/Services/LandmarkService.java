@@ -368,18 +368,6 @@ public class LandmarkService {
         return landmarkChanged;
     }
     
-    /*public Destination addDestinationForUserWhoWantToVisit(Landmark landmark, User user) {
-
-        if (!haveEqualDestinationsForCurrentUser(landmark, user)) {
-            Destination destination = createDestination(landmark.id, landmark.name);
-            destination.userWantToVisit = true;
-            user.destinations.add(destination);
-            return destination;    
-        }
-        else {
-            return new Destination(landmark.id, landmark.name, false, false);
-        }
-    }*/
 
     public boolean haveEqualDestinationsForCurrentUser(Landmark landmark, User user){
             for (Destination dest : user.destinations) {
