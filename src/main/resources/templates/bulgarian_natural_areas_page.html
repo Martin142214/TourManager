@@ -1,0 +1,112 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>Природни забележителности</title>
+    <link rel="stylesheet" href="/error.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/navigation_bar.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bulgarian_historical_areas_page.css}">
+</head>
+<body>
+    <main class="bg-text">
+        <div th:if="${isSignedIn}">
+            <header th:replace="/navigation_bar/navigation_bar.html :: body"></header>
+         </div>
+         <div th:unless="${isSignedIn}">
+            <header th:replace="/navigation_bar/unauthorized_navigation_bar.html :: body"></header>
+         </div>
+      <section>
+        <div class="container">
+            <div class="row">
+                <h1 class="pageTitle">Природни забележителности</h1>
+                <div class="column" id="leftColumn">
+                    <div>
+                        <h1 class="sectionTitle">Видове</h1>
+                        <ul class="allFilters">
+                            <li th:each="type : ${T(com.example.TourManager.Models.Enums.NaturalTypes).values()}">
+                                <form th:action="@{/offers/type/filter}" method="post" style="margin: 0;">
+                                    <input type="hidden" name="naturalType" th:value="${type.name()}">
+                                    
+                                    <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                        <span id="typeName" th:text="${#strings.replace(type,'_',' ')}"></span>
+                                    </button>
+                                </form>
+                            </li>
+                            <!--<li>
+                                <form th:action="@{/offers}" method="get" style="margin: 0;">
+                                    <input type="hidden" name="brand">
+                                    
+                                    <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                        <span id="brandName">Крепости и руини</span>
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <form th:action="@{/sneakers/brand}" method="post" style="margin: 0;">
+                                    <input type="hidden" name="brand">
+                                    
+                                    <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                        <span id="brandName">Светилища</span>
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <form th:action="@{/sneakers/brand}" method="post" style="margin: 0;">
+                                    <input type="hidden" name="brand">
+                                    
+                                    <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                        <span id="brandName">Тракийски</span>
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <form th:action="@{/sneakers/brand}" method="post" style="margin: 0;">
+                                    <input type="hidden" name="brand">
+                                    
+                                    <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                        <span id="brandName">Римски</span>
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <form th:action="@{/sneakers/brand}" method="post" style="margin: 0;">
+                                    <input type="hidden" name="brand">
+                                    
+                                    <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                        <span id="brandName">Средновековни</span>
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <form th:action="@{/sneakers/brand}" method="post" style="margin: 0;">
+                                    <input type="hidden" name="brand">
+                                    
+                                    <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                        <span id="brandName">Възрожденски</span>
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <form th:action="@{/sneakers/brand}" method="post" style="margin: 0;">
+                                    <input type="hidden" name="brand">
+                                    
+                                    <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                        <span id="brandName">Грообници</span>
+                                    </button>
+                                </form>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="column" id="rightColumn">
+                    <img id="mainImage" th:src="@{|/images/natural_areas_bg.jpg|}" alt="" style="width: 100%; height: auto; margin-top: auto;">            
+                </div>
+            </div>   
+        </div>
+      </section>
+    </main>
+    <script src="/scripts/navigation_bar.js"></script> 
+</body>
+</html>

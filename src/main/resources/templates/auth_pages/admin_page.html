@@ -1,0 +1,204 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!--<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/5a3814d3c5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/navigation_bar.css}">
+    <!--<link rel="stylesheet" th:href="@{/imageSlider.css}">-->
+    <link rel="stylesheet" th:href="@{/styles/modal_containers/modals.css}">
+    <link rel="stylesheet" th:href="@{/styles/filters_bar.css}">
+    <link rel="stylesheet" th:href="@{/styles/auth_pages/admin_page.css}">
+    <script src="/scripts/auth_pages/hide_content_admin_page.js"></script>
+    <script src="/scripts/auth_pages/landmark_modals_func.js"></script>
+    <script src="/scripts/auth_pages/user_modals_func.js"></script>
+    <script src="/scripts/auth_pages/show_region_type.js"></script>
+    <script src="/scripts/navigation_bar.js"></script>
+
+    <title>Admin page</title>
+
+    <style>
+      label {
+          margin-top: 20px;
+      }
+  </style>
+</head>
+<body class="w3-light-grey">
+<main>
+    <div th:replace="/navigation_bar/navigation_bar.html :: body"></div>
+    <section id="sectionForAdminFunc">
+        <!-- Page Container -->
+    <div class="w3-content w3-margin-top" style="max-width:1400px;">
+    
+        <!-- The Grid -->
+        <div class="w3-row-padding">
+        
+          <!-- Left Column -->
+          <div class="w3-third">
+          
+            <div class="w3-white w3-text-grey w3-card-4" style="border-radius: 20px;">
+              <div class="w3-display-container">
+                <img src="/images/user.png" style="width:100%" alt="Avatar">
+                <div class="w3-display-bottomleft w3-container w3-text-black">
+                  <h2 th:text="${admin.username}"></h2>
+                </div>
+              </div>
+              <div class="w3-container">  
+                <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Admin</p>
+                <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Veliko Tarnovo, Bulgaria</p>
+                <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i><b th:text="${admin.email}"></b></p>
+                <div class="d-flex" id="secondaryText" style="justify-content: center; background-color: white; margin: 10px;">
+                    <button onclick="document.getElementById('id01').style.display='block';" class="btn btn-sm btn-outline-primary" style="font-size: 16px; width: 100%;">Създай забележителност</button>
+                    <div th:replace="~{/modal_containers/create_modal.html :: body}"></div>
+                </div>
+      
+                <!--<p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Languages</b></p>
+                <p>English</p>
+                <div class="w3-light-grey w3-round-xlarge">
+                  <div class="w3-round-xlarge w3-teal" style="height:24px;width:100%"></div>
+                </div>
+                <p>Spanish</p>
+                <div class="w3-light-grey w3-round-xlarge">
+                  <div class="w3-round-xlarge w3-teal" style="height:24px;width:55%"></div>
+                </div>
+                <p>German</p>
+                <div class="w3-light-grey w3-round-xlarge">
+                  <div class="w3-round-xlarge w3-teal" style="height:24px;width:25%"></div>
+                </div>
+                <br> -->
+              </div>
+            </div><br>
+      
+          <!-- End Left Column -->
+          </div>
+      
+          <!-- Right Column -->
+          <div class="w3-twothird">
+      
+            <div class="w3-container w3-card w3-white" style="border: 5px solid black; border-radius: 20px;">
+              <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i> Потребители</h2>
+              <div class="w3-container" th:each="user : ${users}">
+                <div style="display: flex;">
+                    <h5 class="w3-opacity">Потребителско име: <b th:text="${user.username}"></b></h5>
+                    <span style="margin-left: 20px; cursor: pointer;" th:onclick="openUserDeleteModal([[${user.id}]], [[${user.username}]])">&times;</span>
+                    <div th:replace="/modal_containers/user_modal_containers/delete_user_modal.html"></div>
+                </div>
+                <h6 class="w3-text-teal"> Имейл:
+                    <b th:text="${user.email}"></b>
+                </h6>
+                <hr>
+              </div>
+    
+            </div>
+            
+      
+          <!-- End Right Column -->
+          </div>
+          
+        <!-- End Grid -->
+        </div>
+        
+        <!-- End Page Container -->
+      </div>
+    </section>
+    <section id="sectionForAdminItems">
+        <div class="container">
+            <div class="row" id="filtersBarLine">
+                <div id="filtersDiv">
+                    <ul class="filtersBar">
+                        <li class="active">       
+                            <button type="submit" id="showHistoricalBtn" onclick="showHistoricalContent()" style="border: 0px; background-color: transparent; padding: 0;">
+                                <span id="brandName">Исторически</span>
+                            </button>
+                        </li>
+                        <li>                          
+                            <button type="submit" id="showNaturalBtn" onclick="showNaturalContent()" style="border: 0px; background-color: transparent; padding: 0;">
+                                <span id="brandName">Природни</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div th:replace="~{/modal_containers/delete_modal.html}"></div>
+    
+            <div class="container" id="historicalContainer">
+                <div class="row">
+                    <h4 id="noResults" style="display: none;">No matches found!</h4>
+                    <div th:each="histLand : ${historicalEntities}" class="col-12 col-md-6 col-lg-4 mt-5 mb-4" style="align-items: stretch;">
+                        <a th:href="@{|/offers/${histLand.id}|}">
+                            <div class="card">
+                                <div class="card-header">
+                                    <img th:src="|/images/${histLand.images[0].imagePath}|" alt="image for landmark" style="float: right; height: 250px;">
+                                </div>
+                                <div class="card-footer">
+                                    <h3 class="card-text" th:text="${histLand.name}"></h3>
+                                    <div>
+                                        <p>
+                                            <span class="fas fa-eye"></span>
+                                            <b th:text="${histLand.views}"></b>
+                                        </p>
+                                        <p>
+                                            <span class="fas fa-image"></span>
+                                            <b th:text="${histLand.numberOfImages}"></b>
+                                        </p>
+                                        <p>
+                                            <span class="fas fa-calendar"></span>
+                                            <b th:text="${histLand.dateOfOffer}"></b>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div id="deleteBtnDiv">
+                            <button class="btn btn-sm btn-outline-danger" style="width: 100%" 
+                                    th:onclick="openLandmarkDeleteModal([[${histLand.id}]], [[${histLand.name}]], 
+                                                                    [[${histLand.place}]], [[${histLand.images[0].imagePath}]])">Изтрий</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container" id="naturalContainer">
+                <div class="row">
+                    <h1 id="noResults" style="display: none;">Няма създадени забележителности</h1>
+                    <div th:each="naturalLand : ${naturalEntities}" class="col-12 col-md-6 col-lg-4 mt-5 mb-4" style="align-items: stretch;">
+                        <a th:href="@{|/offers/${naturalLand.id}|}">
+                        <div class="card">
+                            <div class="card-header">
+                                <img th:src="|/images/${naturalLand.images[0].imagePath}|" alt="image for landmark" style="float: right">
+                            </div>
+                            <div class="card-footer">
+                                <h3 class="card-text" th:text="${naturalLand.name}"></h3>
+                                <div>
+                                    <p>
+                                        <span class="fas fa-eye"></span>
+                                        <b th:text="${naturalLand.views}"></b>
+                                    </p>
+                                    <p>
+                                        <span class="fas fa-image"></span>
+                                        <b th:text="${naturalLand.numberOfImages}"></b>
+                                    </p>
+                                    <p>
+                                        <span class="fas fa-calendar"></span>
+                                        <b th:text="${naturalLand.dateOfOffer}"></b>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                        <div id="deleteBtnDiv">
+                            <button class="btn btn-sm btn-outline-danger" style="width: 100%" 
+                                    th:onclick="openLandmarkDeleteModal([[${naturalLand.id}]], [[${naturalLand.name}]], 
+                                                                    [[${naturalLand.place}]], [[${naturalLand.images[0].imagePath}]])">Изтрий</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+</main>
+
+</body>
+</html>

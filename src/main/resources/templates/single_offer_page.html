@@ -1,0 +1,111 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>Main page</title>
+    <link rel="stylesheet" href="/error.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/navigation_bar.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/single_offer_page.css}">
+    <link rel="stylesheet" th:href="@{/styles/modal_containers/modals.css}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5a3814d3c5.js" crossorigin="anonymous"></script>
+    <script src="/scripts/auth_pages/landmark_modals_func.js"></script>
+    <script src="/scripts/single_offer_page.js"></script>
+
+</head>
+<body th:onload="setStarRating([[${landmark.rating}]])">
+    <main class="bg-text">
+        <div th:if="${isSignedIn}">
+            <header th:replace="/navigation_bar/navigation_bar.html :: body"></header>
+         </div>
+         <div th:unless="${isSignedIn}">
+            <header th:replace="/navigation_bar/unauthorized_navigation_bar.html :: body"></header>
+         </div>
+      <section>
+        <div class="container">
+            <div class="row">
+                <div class="column" id="leftColumn">
+                    <img id="mainImage" th:src="@{|/images/${landmark.images[0].imagePath}|}" alt="">
+                    <div style="display: flex; flex-direction: row; justify-content: center; margin-top: 20px;">
+                        <button id="box" style="border: 1px solid lightgrey; width: 20%; height: auto;"
+                                th:each="i : ${#numbers.sequence(landmark.images.size() - 1, 0, -1)}" 
+                                th:with="image=${landmark.images[i]}"
+                                th:onclick="changeImage([[${image.imagePath}]])">
+
+                            <img th:src="@{|/images/${image.imagePath}|}">
+
+                        </button>
+                    </div>
+                </div>
+                <div class="column" id="rightColumn">
+                    <div class="offer-info">
+                        <div>
+                            <h3 style="text-align: center; margin-top: 10px;" th:text="${landmark.name}"></h3>
+                        </div>  
+                        <div id="favoritesIcon">
+                            <form th:action="@{|/offers/addToFavorites/${landmark.id}|}" method="post" id="form1">     
+                                <button id="clickBtn" type="submit" form="form1" style="height: 50px; margin: 10px;">
+                                    <i th:attr="style=${isLandmarkFavoriteForUser} ? 'color : red'" class="fas fa-heart" title="Добави в любими"></i>
+                                </button> 
+                                <span style="font-size: 16px;">Добави в любими</span>        
+                            </form>
+                        </div>
+                        <div id="addIcon">
+                            <form th:action="@{|/offers/userWantToVisit/${landmark.id}|}" method="post" id="form2">     
+                                <button id="clickBtn" type="submit" form="form2" style="height: 50px; margin: 10px;">
+                                    <i th:attr="style=${wantUserToVisitLandmark} ? 'color : greenyellow'" class="fa-solid fa-plus fa-lg"></i>
+                                </button>  
+                                <span style="font-size: 16px;">Искам да посетя</span>        
+                            </form>
+                        </div>
+                        <div id="successIcon">
+                            <form th:action="@{|/offers/userWasHere/${landmark.id}|}" method="post" id="form3">     
+                                <button id="clickBtn" type="submit" form="form3" style="height: 50px; margin: 10px;">
+                                    <i th:attr="style=${wasUserHereForLandmark} ? 'color : green'" class="fa-regular fa-circle-check fa-lg"></i>
+                                </button>  
+                                <span style="font-size: 16px;">Бил съм тук</span>        
+                            </form>
+                        </div>
+                    </div>
+                    <div class="d-flex" id="secondaryText">
+                        <b th:text="${landmark.place}"></b>
+                    </div>
+                    <div th:attr="style=${isAdmin} ? 'display : none'" id="backButton">
+                        <a href="/offers">Назад</a>
+                    </div>
+                    <div th:attr="style=${not isAdmin} ? 'display : none'" id="secondaryText">
+                        <button class="btn btn-sm btn-outline-primary" style="font-size: 16px;"
+                                th:onclick="openLandmarkEditModal([[${landmark.id}]], [[${landmark.name}]], 
+                                                              [[${landmark.description}]], [[${landmark.rating}]])">Редактирай</button>
+                        <div th:replace="~{/modal_containers/edit_modal.html}"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="destination-details">
+                    <h2>Описание</h2>
+                    <div class="column" id="leftColumn">
+                        <p>Рейтинг: 
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </p>
+                        <p>Дата на обявата: <b th:text="${landmark.dateOfOffer}"></b></p>
+                        <p>Брой хора, които са посетили забележителността: <b th:text="${landmark.numberOfPeopleToBeThere}"></b></p>
+                        <p>Брой хора, които искат да посетят забележителността: <b th:text="${landmark.numberOfPeopleWhoWantToVisit}"></b></p>
+                    </div>
+                    <div class="column" id="rightColumn" style="float: right;">
+                        <p style="text-align: justify;" th:text="${landmark.description}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+    <script src="/scripts/navigation_bar.js"></script>   
+</body>
+</html>

@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/navigation_bar.css}">
+</head>
+<body>
+<header>
+    <div class="navbar">
+        <img id="navIcon" th:src="@{/images/travel-tourism-logo.jpg}" class="u-logo-image u-logo-image-1" alt="">
+        <a th:href="@{/logout}"><b>Logout</b></a>
+        <div class="dropdown" style="float:right;">
+            <button onclick="myFunction()" class="dropbtn">Забележителности</button>
+        </div>
+        <a href="/">Обекти</a> 
+        <a th:if="${hasAnyFavorites}" href="/offers/favorites">Любими</a>
+        <a th:if="${wantToVisitDestinations}" href="/offers/wantToVisit/destinations">Искам да посетя</a> 
+        <a th:if="${wasOnDestinations}" href="/offers/wasOn/destinations">Бил съм тук</a> 
+        <a th:if="${isAdmin}" href="/admin">Админ</a>
+    </div>
+    <div class="dropdown-content" id="myDropdown">
+        <a href="/areas/historical">Исторически забележителности</a>
+        <a href="/areas/natural">Природни забележителности</a>
+    </div>
+</header>
+</body>
+</html>

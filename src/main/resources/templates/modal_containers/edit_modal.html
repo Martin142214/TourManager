@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8" http-equiv="Content-Type" content="text/html;"/>
+    <title>Edit modal</title>
+</head>
+<body>
+
+<div id="id02" class="modal">
+
+  <!-- Modal Content -->
+  <form class="modal-content animate" id="landmarkEditModalForm" method="post" enctype="multipart/form-data">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+
+      <label><b>Name</b></label>
+      <input type="text" id="landmarkName" class="form-control" placeholder="Name.." name="name" required>
+
+      <label><b>Description</b></label>
+      <input type="text" id="landmarkDescription" class="form-control" placeholder="Description.." name="description" required>
+      
+      <label><b>Rating</b></label>
+      <select class="form-control" id="ratingOptions" name="rating" title="ratings" required>
+        <option id="ratingOption" value="1">1 star</option>
+        <option id="ratingOption" value="2">2 stars</option>
+        <option id="ratingOption" value="3">3 stars</option>
+        <option id="ratingOption" value="4">4 stars</option>
+        <option id="ratingOption" value="5">5 stars</option>
+      </select>
+
+      <label><b>Images</b></label>
+      <input type="file" id="manyImagesInput" title="files" class="form-control" name="images" accept="image/png, image/jpeg" multiple>
+
+
+      <button type="submit" class="btn btn-primary submitBtn">Edit</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

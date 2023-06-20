@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8" http-equiv="Content-Type" content="text/html;"/>
+    <title>Create modal</title>
+</head>
+<body>
+
+<div id="id01" class="modal">
+
+  <!-- Modal Content -->
+  <form class="modal-content animate" id="landmarkCreateModalForm" th:action="@{/offers/create}" method="post" enctype="multipart/form-data">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+
+      <label><b>Name</b></label>
+      <input type="text" class="form-control" placeholder="Name.." name="name" required>
+
+      <label><b>Places</b></label>
+      <select class="form-control" id="placeOptions" name="place" title="place">
+        <option id="placeOption" th:each="place : ${T(com.example.TourManager.Models.Enums.Places).values()}" th:text="${place}" th:value="${place}"></option>
+      </select>
+
+      <div th:each="type : ${T(com.example.TourManager.Models.Enums.TypesOfLandmark).values()}">
+        <input type="radio" id="option" th:onclick="${type.name() == 'Historical'} ? 'showHistoricalRegions()' : 'showNaturalTypes()' " name="type" th:value="${type}" title="type">
+        <label for="placeOption" th:text="${type}"></label>
+      </div>
+
+        <!--
+        <input type="radio" id="historicalOption" onclick="showHistoricalRegions()" name="type" value="0" title="historicalType">
+        <label for="historicalPlaceOption">Historical</label>
+        <input type="radio" id="naturalOption" onclick="showNaturalTypes()" name="type" value="1" title="naturalType">
+        <label for="naturalPlaceOption">Natural</label>
+        -->
+
+      <br>
+
+      <label id="historicalRegionsLabel" style="display: none;"><b>Historical regions</b></label>
+      <select class="form-control" id="historicalOptions" style="display: none;" name="historicalRegion" title="historicalRegion">
+        <option id="historicalOption" th:each="region : ${T(com.example.TourManager.Models.Enums.Regions).values()}" th:text="${region}" th:value="${region}"></option>
+      </select>
+
+      <label id="naturalTypesLabel" style="display: none;"><b>Natural types</b></label>
+      <select class="form-control" id="naturalOptions" style="display: none;" name="naturalType" title="naturalType">
+        <option id="naturalOption" th:each="type : ${T(com.example.TourManager.Models.Enums.NaturalTypes).values()}" th:text="${type}" th:value="${type}"></option>
+      </select>
+
+
+      <label><b>Description</b></label>
+      <input type="text" class="form-control" placeholder="Description.." name="description" required>
+      
+      <label><b>Rating</b></label>
+      <select class="form-control" id="ratingOptions" name="rating" title="ratings" required>
+        <option id="ratingOption" value="1">1 star</option>
+        <option id="ratingOption" value="2">2 stars</option>
+        <option id="ratingOption" value="3">3 stars</option>
+        <option id="ratingOption" value="4">4 stars</option>
+        <option id="ratingOption" value="5">5 stars</option>
+      </select>
+
+      <label id="manyImagesLabel"><b>Images</b></label>
+      <input type="file" id="manyImagesInput" title="files" class="form-control" name="images" accept="image/png, image/jpeg" multiple>
+
+
+      <button type="submit" class="btn btn-primary submitBtn">Create</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>Main page</title>
+    <link rel="stylesheet" href="/error.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/navigation_bar.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/main_page.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/best_offers_slider.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/main_page_slider.css}">
+    <script id="tns" async src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js" defer></script>
+
+    <script src="/scripts/multiple_best_offers_slider.js"></script>
+</head>
+<body>
+  <section>
+    <main class="bg-text">
+      <div th:if="${isSignedIn}">
+        <header th:replace="/navigation_bar/navigation_bar.html :: body"></header>
+     </div>
+     <div th:unless="${isSignedIn}">
+        <header th:replace="/navigation_bar/unauthorized_navigation_bar.html :: body"></header>
+     </div>
+        <div class="container">
+            <div class="row">
+                <div class="mySlides">
+                    <div class="numbertext">1 / 6</div>
+                    <img src="/images/church_saint_sofia.jpg" style="width:100%">
+                  </div>
+                
+                  <div class="mySlides">
+                    <div class="numbertext">2 / 6</div>
+                    <img src="/images/eyes_of_god.jpg" style="width:100%">
+                  </div>
+                
+                  <div class="mySlides">
+                    <div class="numbertext">3 / 6</div>
+                    <img src="/images/rilski_manastir.jpg" style="width:100%">
+                  </div>
+                    
+                  <div class="mySlides">
+                    <div class="numbertext">4 / 6</div>
+                    <img src="/images/seaside.jpg" style="width:100%">
+                  </div>
+                
+                  <div class="mySlides">
+                    <div class="numbertext">5 / 6</div>
+                    <img src="/images/stone_bridge.jpg" style="width:100%">
+                  </div>
+                    
+                  <div class="mySlides">
+                    <div class="numbertext">6 / 6</div>
+                    <img src="/images/tsarevets.jpg" style="width:100%">
+                  </div>
+                    
+                  <a class="prev" onclick="plusSlides(-1)">❮</a>
+                  <a class="next" onclick="plusSlides(1)">❯</a>
+                
+                  <div class="caption-container">
+                    <p id="caption"></p>
+                  </div>
+                
+                  <div class="row">
+                    <div class="column">
+                      <img class="demo cursor" src="/images/church_saint_sofia.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+                    </div>
+                    <div class="column">
+                      <img class="demo cursor" src="/images/eyes_of_god.jpg" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
+                    </div>
+                    <div class="column">
+                      <img class="demo cursor" src="/images/rilski_manastir.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
+                    </div>
+                    <div class="column">
+                      <img class="demo cursor" src="/images/seaside.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
+                    </div>
+                    <div class="column">
+                      <img class="demo cursor" src="/images/stone_bridge.jpg" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
+                    </div>    
+                    <div class="column">
+                      <img class="demo cursor" src="/images/tsarevets.jpg" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
+                    </div>
+                  </div> 
+            </div>
+
+            <div class="row" id="sliderBody">
+                <div id="slider-section">
+
+                    <div class="container">
+                        <div class="subcontainer">
+
+                            <div class="slider-wrapper">
+                                <h3 style="font-weight: bold;">Най-доброто от забележителностите</h3>
+                                <br>
+                                <div class="slider"></div>
+                                <!-- 
+                                  <div class="controls">
+                                    <button class="previousButton" title="previous">
+                                        <i class="fa-solid fa-angle-left"></i>
+                                    </button>
+                                    <button class="nextButton" title="next">
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </button>
+                                </div>
+                              -->
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+             </div>
+             
+            <!--<div class="row" id="sliderBody">
+              <div id="slider-section">
+
+                  <div class="container">
+                      <div class="subcontainer">
+  
+                          <div class="slider-wrapper">
+                              <h3 style="font-weight: bold;">Най-доброто от природните забележителности</h3>
+                              <br>
+                              <div class="slider"></div>
+                              
+                                <div class="controls">
+                                  <button class="previousButton" title="previous">
+                                      <i class="fa-solid fa-angle-left"></i>
+                                  </button>
+                                  <button class="nextButton" title="next">
+                                      <i class="fa-solid fa-angle-right"></i>
+                                  </button>
+                              </div>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  -->
+            
+        </div> 
+    </main>
+  </section>
+    <script src="/scripts/navigation_bar.js"></script> 
+    <script src="/scripts/main_page_slider.js"></script>  
+    <script th:inline="javascript">
+      var landmarks = [[${landmarks}]];
+      initializeDeals(landmarks);
+    </script>
+</body>
+</html>
