@@ -463,9 +463,7 @@ public class LandmarkService {
             }
         }
         else if (filterCriteria.equals("favorite")) {
-            /*SortedSet<Landmark> sortedLandmarksByMostFavorite = new TreeSet<>(Comparator.comparingInt(landmark -> landmark.rating));
-            sortArray(sortedLandmarksByMostFavorite);*/
-            ArrayList<Landmark> sortedLandmarksByMostFavorite = new ArrayList<>();
+            /*SortedSet<Landmark> sortedLandmarksByMostFavorite = new TreeSet<>(Comparator.comparingInt(landmark -> landmark.rating));*/
             for (Landmark landmark : filteredList) {
                 filteredListByCriteria.add(landmark);
             }
