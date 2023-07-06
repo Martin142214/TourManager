@@ -438,6 +438,7 @@ iframe {
   background: -o-linear-gradient(bottom, #7579ff, #b224ef);
   background: -moz-linear-gradient(bottom, #7579ff, #b224ef);
   background: linear-gradient(bottom, #7579ff, #b224ef);
+  
   position: relative;
   z-index: 1;
 
@@ -472,6 +473,16 @@ iframe {
 
 .login100-form-btn:hover:before {
   opacity: 0;
+}
+
+.movedLeft {
+  left: -20%;
+  transition: 0.1s;
+}
+
+.movedRight {
+  left: 20%;
+  transition: 0.1s;
 }
 
 
