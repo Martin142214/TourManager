@@ -7,14 +7,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.example.TourManager.Models.ClassModels.Destination;
 import com.example.TourManager.Models.ClassModels.FileDB;
 import com.example.TourManager.Models.ClassModels.FilterForCriteria;
 import com.example.TourManager.Models.EntityModels.Landmark;
@@ -36,7 +31,6 @@ import com.example.TourManager.Services.LandmarkService;
 import com.example.TourManager.Services.UploadImageService;
 import com.example.TourManager.Services.AuthServices.UserService;
 
-import ch.qos.logback.core.filter.Filter;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
@@ -183,7 +177,7 @@ public class LandmarkController {
         //model.addAttribute("hasAnyFavorites", !_userService.getCurrentUser().favoriteLandmarks.isEmpty());
         
         //_carService.setLanguage(request, model);
-        int i = 0;
+
         return "favorites_list.html";
     }
 
@@ -201,7 +195,7 @@ public class LandmarkController {
         //model.addAttribute("wantToVisitDestinations", _userService.getCurrentUser().destinations.stream().filter(dest -> dest.userWantToVisit == true).findAny().isPresent());
         
         //_carService.setLanguage(request, model);
-        int i = 0;
+
         return "wantToVisit_list.html";
     }
 
@@ -217,7 +211,7 @@ public class LandmarkController {
         model.addAttribute("wantToVisitDestinations", _userService.getCurrentUser().destinations.stream().filter(dest -> dest.userWantToVisit == true).findAny().isPresent());
         //model.addAttribute("wasOnDestinations", _userService.getCurrentUser().destinations.stream().filter(dest -> dest.userWasHere == true).findAny().isPresent());
         //_carService.setLanguage(request, model);
-        int i = 0;
+
         return "wasHere_list.html";
     }
 
@@ -285,7 +279,7 @@ public class LandmarkController {
                 historicalRegion = null;
             }
             Landmark landmark = new Landmark(name, place, type, historicalRegion, naturalType, description, rating, dateFormat.format(Calendar.getInstance().getTime()) , 0, 0, 0, landmarkImageFiles.size(), landmarkImageFiles);
-            int i = 0;
+
             _landmarkService.create(landmark);                
         } 
         catch (Exception e) {
@@ -362,7 +356,7 @@ public class LandmarkController {
             //String shoeDirectoryName = _shoeService.concatenate(shoe.brand.toString().toLowerCase(), "_", shoe.model.toLowerCase().replace(" ", "-"), "_", shoe.colorSpecification.toLowerCase().replace(" ", "-"));
             File landmarkDir = new File(imagesPath, landmarkDirectoryName);
             if (landmarkDir.exists()) {
-                int i = 0;
+
                 if (_landmarkService.deleteDirectory(landmarkDir)) {
                     _landmarkService.Delete(id);                 
                 }
