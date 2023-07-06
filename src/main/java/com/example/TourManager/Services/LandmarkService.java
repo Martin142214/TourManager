@@ -1,24 +1,18 @@
 package com.example.TourManager.Services;
 
 import java.io.File;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.SortedSet;
-import java.util.TreeSet;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.TourManager.Comparators.MostPopularCompare;
@@ -36,8 +30,6 @@ import com.example.TourManager.Models.Enums.Regions;
 import com.example.TourManager.Repositories.LandmarkRepository;
 import com.example.TourManager.Repositories.AuthRepositories.UserRepo;
 import com.example.TourManager.Services.AuthServices.UserService;
-
-import jakarta.mail.Flags.Flag;
 
 @Service
 public class LandmarkService {

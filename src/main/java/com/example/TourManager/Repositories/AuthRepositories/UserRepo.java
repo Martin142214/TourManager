@@ -1,7 +1,6 @@
 package com.example.TourManager.Repositories.AuthRepositories;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 
 import com.example.TourManager.Models.EntityModels.User;
 
