@@ -30,7 +30,9 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" th:action="@{/user/login}" method="post">
+				<form name="loginForm" class="login100-form validate-form" th:action="@{/user/login}" 
+					  method="post" onsubmit="return validateForm()">
+
 					<span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape"></i>
 					</span>
@@ -39,13 +41,15 @@
 						Log in
 					</span>
 
+					<p id="usernameValidationText" class="text-danger" style="display: none;">Please enter username</p>
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Username" required>
+						<input class="input100" type="text" name="username" placeholder="Username" minlength="3" maxlength="25">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
+					<p id="passwordValidationText" class="text-danger" style="display: none;">Please enter password</p>
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="password" placeholder="Password" required>
+						<input class="input100" type="password" name="password" placeholder="Password" minlength="5" maxlength="25">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
@@ -57,7 +61,7 @@
 					</div>-->
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" onmouseover="moveButtonAside()">
 							Login
 						</button>
 					</div>
@@ -99,6 +103,7 @@
 	<script src="/scripts/auth_pages/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="/scripts/auth_pages/main.js"></script>
+	<script src="/scripts/auth_pages/validateForm.js"></script>
 
 </body>
 </html>
