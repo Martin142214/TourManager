@@ -17,3 +17,16 @@ Pages in project:
 
 - Natural monuments list - depends on the category the user chooses. Category is selected in the page above.
 ![image](https://github.com/Martin142214/TourManager/assets/66480934/0ee8d972-32b2-4df3-8944-5445a104b6a5)
+
+- Monument page
+![image](https://github.com/Martin142214/TourManager/assets/66480934/abde5fd4-1cd6-4f0e-a131-ac98ed561eba)
+
+- logged in user on monument page
+![image](https://github.com/Martin142214/TourManager/assets/66480934/84b990c6-596c-4c7b-a625-9ed9dc480e71)
+
+- "I want to visit" destinations list
+![image](https://github.com/Martin142214/TourManager/assets/66480934/dc49992d-53ca-47ef-9f96-9bd1b26f8246)
+
+
+- "I was here" destinations list
+![image](https://github.com/Martin142214/TourManager/assets/66480934/fcba75ca-1b19-4753-b130-4f6265d584cb)
