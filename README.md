@@ -10,12 +10,14 @@ Pages in project:
 ![image](https://github.com/Martin142214/TourManager/assets/66480934/aa663c3e-01f0-4a44-ac52-f36677969f4e)
 
 - Historical monuments list - depends on the category the user chooses. Category is selected in the page above.
+Here, user can reorder items based on 4 categories - most popular, most visited, newest and most favorite.
 ![image](https://github.com/Martin142214/TourManager/assets/66480934/1f7b00c2-cfc9-4360-a270-19362afa29a4)
 
 - Natural monuments page
 ![image](https://github.com/Martin142214/TourManager/assets/66480934/019642b6-4fa5-4687-8a9f-9b809a44a69d)
 
 - Natural monuments list - depends on the category the user chooses. Category is selected in the page above.
+Here, user can reorder items based on 4 categories - most popular, most visited, newest and most favorite.
 ![image](https://github.com/Martin142214/TourManager/assets/66480934/0ee8d972-32b2-4df3-8944-5445a104b6a5)
 
 - Monument page
