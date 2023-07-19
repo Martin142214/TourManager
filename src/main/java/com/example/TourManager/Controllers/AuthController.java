@@ -2,12 +2,7 @@ package com.example.TourManager.Controllers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,17 +15,10 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.TourManager.Models.ClassModels.Destination;
 import com.example.TourManager.Models.EntityModels.Landmark;
-import com.example.TourManager.Models.EntityModels.Privilege;
-import com.example.TourManager.Models.EntityModels.Role;
 import com.example.TourManager.Models.EntityModels.User;
-import com.example.TourManager.Models.Enums.TypesOfLandmark;
-import com.example.TourManager.Repositories.AuthRepositories.PrivilegeRepo;
 import com.example.TourManager.Repositories.AuthRepositories.RoleRepo;
 import com.example.TourManager.Repositories.AuthRepositories.UserRepo;
-import com.example.TourManager.Services.LandmarkService;
 import com.example.TourManager.Services.AuthServices.UserService;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping(value = "/user")

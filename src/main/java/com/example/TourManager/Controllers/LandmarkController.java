@@ -1,8 +1,6 @@
 package com.example.TourManager.Controllers;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,7 +8,6 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -24,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.TourManager.FileUploadUtils;
-import com.example.TourManager.Models.ClassModels.CustomMultipartFile;
 import com.example.TourManager.Models.ClassModels.FileDB;
 import com.example.TourManager.Models.ClassModels.FilterForCriteria;
 import com.example.TourManager.Models.EntityModels.Landmark;
