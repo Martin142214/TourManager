@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 public class TourManagerApplication {
 
 	public static void main(String[] args) {
-		System.setProperty("images.path", "E:/Java web projects/TourManager/src/main/resources/static/images/");
+		System.setProperty("images.path", "E:/Java web projects/TourManager/TourManager/src/main/resources/static/images/");
 
 		SpringApplication.run(TourManagerApplication.class, args);
 	}
