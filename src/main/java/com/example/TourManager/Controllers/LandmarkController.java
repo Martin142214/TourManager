@@ -1,12 +1,16 @@
 package com.example.TourManager.Controllers;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
+
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -19,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.example.TourManager.FileUploadUtils;
+import com.example.TourManager.Models.ClassModels.CustomMultipartFile;
 import com.example.TourManager.Models.ClassModels.FileDB;
 import com.example.TourManager.Models.ClassModels.FilterForCriteria;
 import com.example.TourManager.Models.EntityModels.Landmark;
@@ -303,24 +309,50 @@ public class LandmarkController {
 
             if (!landmark.name.equals(name)) {
                 File oldLandmarkDirectory = landmarkDirectory;
-                _landmarkService.deleteDirectory(oldLandmarkDirectory);
 
                 String newLandmarkDirectoryName = _imageService.concatenate(name.toLowerCase().replace(" ", "-"), "_", landmark.place.toString().toLowerCase());
                 File newLandmarkDirectory = new File(imagesPath, newLandmarkDirectoryName);
 
                 if (newLandmarkDirectory.mkdir()) {
-                    for (MultipartFile image : images) {
-                        String imageName = image.getOriginalFilename();
-                        String imageUrl = newLandmarkDirectoryName + "/" + imageName;
-                        FileDB fileDB = new FileDB(imageName, image.getContentType(), imageUrl);
-                        landmarkImageFiles.add(fileDB);                     
-                        this._imageService.uploadImage(image, imageName, newLandmarkDirectory);    
+                    if (images[0].isEmpty()) {
+                        try {
+                            File source = new File(oldLandmarkDirectory.getAbsolutePath());
+                            File dest = new File(newLandmarkDirectory.getAbsolutePath());
+                            FileUploadUtils.copyDirectory(source, dest);
+                            for (FileDB image : landmark.images) {
+                                String imageUrl = newLandmarkDirectoryName + "/" + image.name;
+                                image.imagePath = imageUrl;
+                                landmarkImageFiles.add(image);
+                                /*File imgFile = new File(imagesPath + image.imagePath);
+                                byte[] imgBytes = Files.readAllBytes(imgFile.toPath());
+                                CustomMultipartFile customMultipartFile = new CustomMultipartFile(imgBytes);
+                                
+                                customMultipartFile.transferTo();
+                                landmarkImageFiles.add(image);                     
+                                this._imageService.uploadImage(image, image.name, newLandmarkDirectory);    */
+                            }
+                            landmark.images = landmarkImageFiles;
+                            landmark.numberOfImages = landmarkImageFiles.size();
+                        }
+                        catch(Exception exception) {
+                            exception.printStackTrace();
+                        }
+                        _landmarkService.deleteDirectory(oldLandmarkDirectory);
+                    }
+                    else {
+                        for (MultipartFile image : images) {
+                            String imageName = image.getOriginalFilename();
+                            String imageUrl = newLandmarkDirectoryName + "/" + imageName;
+                            FileDB fileDB = new FileDB(imageName, image.getContentType(), imageUrl);
+                            landmarkImageFiles.add(fileDB);                     
+                            this._imageService.uploadImage(image, imageName, newLandmarkDirectory);    
+                        }
+                        landmark.images = landmarkImageFiles;
+                        landmark.numberOfImages = landmarkImageFiles.size();
                     }
                 }
             }
             else {
-                //String shoeDirectoryName = _shoeService.concatenate(shoe.brand.toString().toLowerCase(), "_", shoe.model.toLowerCase().replace(" ", "-"), "_", shoe.colorSpecification.toLowerCase().replace(" ", "-"));
-                
                 if (landmarkDirectory.exists() && !images[0].isEmpty()) {
                     if (_landmarkService.deleteFileFromDirectory(landmarkDirectory)) {
                         for (MultipartFile image : images) {
@@ -329,17 +361,16 @@ public class LandmarkController {
                             FileDB fileDB = new FileDB(imageName, image.getContentType(), imageUrl);
                             landmarkImageFiles.add(fileDB);                     
                             this._imageService.uploadImage(image, imageName, landmarkDirectory);    
-                        }    
+                        } 
                     }
+                    landmark.images = landmarkImageFiles;
+                    landmark.numberOfImages = landmarkImageFiles.size();
                 }
-
             }
 
             landmark.name = name;
             landmark.description = description;
             landmark.rating = rating;
-            landmark.images = landmarkImageFiles;
-            landmark.numberOfImages = landmarkImageFiles.size();
             _landmarkRepository.save(landmark);
         }
 
