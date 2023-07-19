@@ -333,7 +333,6 @@ public class LandmarkController {
                         catch(Exception exception) {
                             exception.printStackTrace();
                         }
-                        _landmarkService.deleteDirectory(oldLandmarkDirectory);
                     }
                     else {
                         for (MultipartFile image : images) {
@@ -346,6 +345,7 @@ public class LandmarkController {
                         landmark.images = landmarkImageFiles;
                         landmark.numberOfImages = landmarkImageFiles.size();
                     }
+                    _landmarkService.deleteDirectory(oldLandmarkDirectory);
                 }
             }
             else {
