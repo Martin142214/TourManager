@@ -91,8 +91,10 @@ public class LandmarkService {
         File[] allContents = directoryWithFiles.listFiles();
         if (allContents != null) {
             for (File file : allContents) {
-                return file.delete();
+                file.delete();
+                continue;
             }
+            return true;
         }
         return false; 
     }
