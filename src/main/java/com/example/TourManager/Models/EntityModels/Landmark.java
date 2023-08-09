@@ -7,9 +7,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.example.TourManager.Models.ClassModels.FileDB;
-import com.example.TourManager.Models.Enums.NaturalTypes;
-import com.example.TourManager.Models.Enums.Places;
 import com.example.TourManager.Models.Enums.Regions;
+import com.example.TourManager.Models.Enums.Places;
+import com.example.TourManager.Models.Enums.NaturalTypes;
 import com.example.TourManager.Models.Enums.TypesOfLandmark;
 
 @Document
@@ -20,8 +20,8 @@ public class Landmark implements Serializable {
     public String name;
     public Places place;
     public TypesOfLandmark type;
-    public Regions historicalRegion;
     public NaturalTypes naturalType;
+    public Regions historicalRegion;
     public String description;
     public Integer rating;
     public String dateOfOffer;
