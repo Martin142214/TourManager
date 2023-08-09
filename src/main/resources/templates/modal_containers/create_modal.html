@@ -41,12 +41,12 @@
 
       <label id="historicalRegionsLabel" style="display: none;"><b>Historical regions</b></label>
       <select class="form-control" id="historicalOptions" style="display: none;" name="historicalRegion" title="historicalRegion">
-        <option id="historicalOption" th:each="region : ${T(com.example.TourManager.Models.Enums.Regions).values()}" th:text="${region}" th:value="${region}"></option>
+        <option id="historicalOption" th:each="region : ${T(com.example.TourManager.Models.Enums.Regions).values()}" th:text="${region.getHistoricalRegionName()}" th:value="${region}"></option>
       </select>
 
       <label id="naturalTypesLabel" style="display: none;"><b>Natural types</b></label>
       <select class="form-control" id="naturalOptions" style="display: none;" name="naturalType" title="naturalType">
-        <option id="naturalOption" th:each="type : ${T(com.example.TourManager.Models.Enums.NaturalTypes).values()}" th:text="${type}" th:value="${type}"></option>
+        <option id="naturalOption" th:each="type : ${T(com.example.TourManager.Models.Enums.NaturalTypes).values()}" th:text="${type.getNaturalTypeName()}" th:value="${type}"></option>
       </select>
 
 
