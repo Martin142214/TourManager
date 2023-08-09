@@ -5,10 +5,13 @@ public class Filter {
 
     public String value;
 
+    public String bulgarianValue;
+
     public Filter() {}
 
-    public Filter(String type, String value) {
+    public Filter(String type, String value, String bulgarianValue) {
         this.type = type;
         this.value = value;
+        this.bulgarianValue = bulgarianValue;
     }
 }
