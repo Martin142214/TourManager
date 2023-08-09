@@ -24,9 +24,9 @@ import com.example.TourManager.FileUploadUtils;
 import com.example.TourManager.Models.ClassModels.FileDB;
 import com.example.TourManager.Models.ClassModels.FilterForCriteria;
 import com.example.TourManager.Models.EntityModels.Landmark;
-import com.example.TourManager.Models.Enums.NaturalTypes;
-import com.example.TourManager.Models.Enums.Places;
 import com.example.TourManager.Models.Enums.Regions;
+import com.example.TourManager.Models.Enums.Places;
+import com.example.TourManager.Models.Enums.NaturalTypes;
 import com.example.TourManager.Models.Enums.TypesOfLandmark;
 import com.example.TourManager.Repositories.LandmarkRepository;
 import com.example.TourManager.Services.LandmarkService;
@@ -36,7 +36,7 @@ import com.example.TourManager.Services.AuthServices.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping(value = "/offers")
+@RequestMapping(value = "/destinations")
 public class LandmarkController {
 
     @Autowired
@@ -50,7 +50,7 @@ public class LandmarkController {
 
     private LandmarkService _landmarkService;
     
-    private final String mainControllerUrl = "http://localhost:8080/offers";
+    private final String mainControllerUrl = "http://localhost:8080/destinations";
 
     
     public LandmarkController(LandmarkService landmarkService) {
@@ -65,7 +65,7 @@ public class LandmarkController {
     @GetMapping
     public String getAllLandmarks(Model model, HttpServletRequest request) {
 
-
+        
         if (_landmarkService.filteredListByCriteria.isEmpty()) {
             model.addAttribute("landmarkEntities", _landmarkService.filteredList);
             model.addAttribute("hasNoLandmarks", _landmarkService.filteredList.isEmpty());    
@@ -77,11 +77,11 @@ public class LandmarkController {
         }
 
         if (_landmarkService.pageFilter.type.equals("historical")) {
-            model.addAttribute("title", "Исторически, " + _landmarkService.pageFilter.value.replace("_", " "));
+            model.addAttribute("title", "Исторически, " + _landmarkService.pageFilter.bulgarianValue.replace("_", " "));
             model.addAttribute("isHistorical", true);
         }
         else if (_landmarkService.pageFilter.type.equals("natural")) {
-            model.addAttribute("title", "Природни, " + _landmarkService.pageFilter.value.replace("_", " "));
+            model.addAttribute("title", "Природни, " + _landmarkService.pageFilter.bulgarianValue.replace("_", " "));
             model.addAttribute("isHistorical", false);
         }
 
@@ -184,11 +184,13 @@ public class LandmarkController {
     }
 
     @GetMapping("/wantToVisit/destinations")
+    //@Cacheable(cacheManager = "cacheManager", cacheNames = "continue")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public String getAllDestinationsThatUserWantToVisit(Model model, HttpServletRequest request){
         
         Collection<Landmark> wantToVisitLandmarks = _landmarkService.getWantToVisitLandmarksForUser();
         model.addAttribute("wantToVisitLandmarks", wantToVisitLandmarks);
+
         
         model.addAttribute("isAdmin", _userService.isAdmin());
         model.addAttribute("hasAnyFavorites", !_userService.getCurrentUser().favoriteLandmarks.isEmpty());
@@ -367,6 +369,7 @@ public class LandmarkController {
             landmark.name = name;
             landmark.description = description;
             landmark.rating = rating;
+            
             _landmarkRepository.save(landmark);
         }
 

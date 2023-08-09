@@ -30,7 +30,7 @@
                 <div id="filtersDiv">
                     <ul class="filtersBar" th:attr="style=${hasNoLandmarks} ? 'pointer-events : none'">
                         <li th:classappend="${filterCriteria eq #strings.toLowerCase('popular')} ? active" th:attr="style=${filterCriteria eq #strings.toLowerCase('popular') ? 'pointer-events:none; opacity: 0.6' : ''}">
-                            <form th:action="@{/offers/filter/criteria}" method="post" style="margin: 0;">
+                            <form th:action="@{/destinations/filter/criteria}" method="post" style="margin: 0;">
                                 <input type="hidden" name="filterCriteria" value="popular">
                                 
                                 <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
@@ -39,7 +39,7 @@
                             </form>
                         </li>
                         <li th:classappend="${filterCriteria eq #strings.toLowerCase('visited')} ? active" th:attr="style=${filterCriteria eq #strings.toLowerCase('visited') ? 'pointer-events:none; opacity: 0.6' : ''}">
-                            <form th:action="@{/offers/filter/criteria}" method="post" style="margin: 0;">
+                            <form th:action="@{/destinations/filter/criteria}" method="post" style="margin: 0;">
                                 <input type="hidden" name="filterCriteria" value="visited">
                                 
                                 <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
@@ -48,7 +48,7 @@
                             </form>
                         </li>
                         <li th:classappend="${filterCriteria eq #strings.toLowerCase('new')} ? active" th:attr="style=${filterCriteria eq #strings.toLowerCase('new') ? 'pointer-events:none; opacity: 0.6' : ''}">
-                            <form th:action="@{/offers/filter/criteria}" method="post" style="margin: 0;">
+                            <form th:action="@{/destinations/filter/criteria}" method="post" style="margin: 0;">
                                 <input type="hidden" name="filterCriteria" value="new">
                                 
                                 <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
@@ -57,7 +57,7 @@
                             </form>
                         </li>
                         <li th:classappend="${filterCriteria eq #strings.toLowerCase('favorite')} ? active" th:attr="style=${filterCriteria eq #strings.toLowerCase('favorite') ? 'pointer-events:none; opacity: 0.6' : ''}">
-                            <form th:action="@{/offers/filter/criteria}" method="post" style="margin: 0;">
+                            <form th:action="@{/destinations/filter/criteria}" method="post" style="margin: 0;">
                                 <input type="hidden" name="filterCriteria" value="favorite">
                                 
                                 <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
@@ -75,7 +75,7 @@
             </div>
             <div class="row" th:unless="${hasNoLandmarks}">
                 <div th:each="land : ${landmarkEntities}" class="col-12 col-md-6 col-lg-4 mt-5 mb-4" style="align-items: stretch;">
-                    <a th:href="@{|/offers/${land.id}|}">
+                    <a th:href="@{|/destinations/${land.id}|}">
                     <div class="card">
                         <div class="card-header">
                             <img th:src="|/images/${land.images[0].imagePath}|" alt="image for landmark" style="float: right">

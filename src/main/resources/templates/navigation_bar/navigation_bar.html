@@ -16,9 +16,9 @@
             <button onclick="myFunction()" class="dropbtn">Забележителности</button>
         </div>
         <a href="/">Обекти</a> 
-        <a th:if="${hasAnyFavorites}" href="/offers/favorites">Любими</a>
-        <a th:if="${wantToVisitDestinations}" href="/offers/wantToVisit/destinations">Искам да посетя</a> 
-        <a th:if="${wasOnDestinations}" href="/offers/wasOn/destinations">Бил съм тук</a> 
+        <a th:if="${hasAnyFavorites}" href="/destinations/favorites">Любими</a>
+        <a th:if="${wantToVisitDestinations}" href="/destinations/wantToVisit/destinations">Искам да посетя</a> 
+        <a th:if="${wasOnDestinations}" href="/destinations/wasOn/destinations">Бил съм тук</a> 
         <a th:if="${isAdmin}" href="/admin">Админ</a>
     </div>
     <div class="dropdown-content" id="myDropdown">

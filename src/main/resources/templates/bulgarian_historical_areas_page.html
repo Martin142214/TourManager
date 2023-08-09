@@ -26,7 +26,7 @@
                         <h1 class="sectionTitle">Видове</h1>
                         <ul class="allFilters">
                             <li th:each="region : ${T(com.example.TourManager.Models.Enums.Regions).values()}">
-                                <form th:action="@{/offers/region/filter}" method="post" style="margin: 0;">
+                                <form th:action="@{/destinations/region/filter}" method="post" style="margin: 0;">
                                     <input type="hidden" name="historicalRegion" th:value="${region.name()}">
                                     
                                     <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">

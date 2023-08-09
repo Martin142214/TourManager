@@ -21,7 +21,7 @@
         <div class="container">
             <div class="row">
                 <div th:each="land : ${wasOnLandmarks}" class="col-12 col-md-6 col-lg-4 mt-5 mb-4" style="align-items: stretch;">
-                    <a th:href="@{|/offers/${land.id}|}">
+                    <a th:href="@{|/destinations/${land.id}|}">
                     <div class="card">
                         <div class="card-header">
                             <img th:src="|/images/${land.images[0].imagePath}|" alt="image for landmark" style="float: right">

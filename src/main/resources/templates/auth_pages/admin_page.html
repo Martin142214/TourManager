@@ -130,7 +130,7 @@
                 <div class="row">
                     <h4 id="noResults" style="display: none;">No matches found!</h4>
                     <div th:each="histLand : ${historicalEntities}" class="col-12 col-md-6 col-lg-4 mt-5 mb-4" style="align-items: stretch;">
-                        <a th:href="@{|/offers/${histLand.id}|}">
+                        <a th:href="@{|/destinations/${histLand.id}|}">
                             <div class="card">
                                 <div class="card-header">
                                     <img th:src="|/images/${histLand.images[0].imagePath}|" alt="image for landmark" style="float: right; height: 250px;">
@@ -166,7 +166,7 @@
                 <div class="row">
                     <h1 id="noResults" style="display: none;">Няма създадени забележителности</h1>
                     <div th:each="naturalLand : ${naturalEntities}" class="col-12 col-md-6 col-lg-4 mt-5 mb-4" style="align-items: stretch;">
-                        <a th:href="@{|/offers/${naturalLand.id}|}">
+                        <a th:href="@{|/destinations/${naturalLand.id}|}">
                         <div class="card">
                             <div class="card-header">
                                 <img th:src="|/images/${naturalLand.images[0].imagePath}|" alt="image for landmark" style="float: right">

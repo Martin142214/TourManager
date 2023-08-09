@@ -45,7 +45,7 @@
                             <h3 style="text-align: center; margin-top: 10px;" th:text="${landmark.name}"></h3>
                         </div>  
                         <div id="favoritesIcon">
-                            <form th:action="@{|/offers/addToFavorites/${landmark.id}|}" method="post" id="form1">     
+                            <form th:action="@{|/destinations/addToFavorites/${landmark.id}|}" method="post" id="form1">     
                                 <button id="clickBtn" type="submit" form="form1" style="height: 50px; margin: 10px;">
                                     <i th:attr="style=${isLandmarkFavoriteForUser} ? 'color : red'" class="fas fa-heart" title="Добави в любими"></i>
                                 </button> 
@@ -53,7 +53,7 @@
                             </form>
                         </div>
                         <div id="addIcon">
-                            <form th:action="@{|/offers/userWantToVisit/${landmark.id}|}" method="post" id="form2">     
+                            <form th:action="@{|/destinations/userWantToVisit/${landmark.id}|}" method="post" id="form2">     
                                 <button id="clickBtn" type="submit" form="form2" style="height: 50px; margin: 10px;">
                                     <i th:attr="style=${wantUserToVisitLandmark} ? 'color : greenyellow'" class="fa-solid fa-plus fa-lg"></i>
                                 </button>  
@@ -61,7 +61,7 @@
                             </form>
                         </div>
                         <div id="successIcon">
-                            <form th:action="@{|/offers/userWasHere/${landmark.id}|}" method="post" id="form3">     
+                            <form th:action="@{|/destinations/userWasHere/${landmark.id}|}" method="post" id="form3">     
                                 <button id="clickBtn" type="submit" form="form3" style="height: 50px; margin: 10px;">
                                     <i th:attr="style=${wasUserHereForLandmark} ? 'color : green'" class="fa-regular fa-circle-check fa-lg"></i>
                                 </button>  
@@ -73,7 +73,7 @@
                         <b th:text="${landmark.place}"></b>
                     </div>
                     <div th:attr="style=${isAdmin} ? 'display : none'" id="backButton">
-                        <a href="/offers">Назад</a>
+                        <a href="/destinations">Назад</a>
                     </div>
                     <div th:attr="style=${not isAdmin} ? 'display : none'" id="secondaryText">
                         <button class="btn btn-sm btn-outline-primary" style="font-size: 16px;"
