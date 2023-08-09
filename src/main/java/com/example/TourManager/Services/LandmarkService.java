@@ -25,8 +25,8 @@ import com.example.TourManager.Models.ClassModels.Filter;
 import com.example.TourManager.Models.ClassModels.FilterForCriteria;
 import com.example.TourManager.Models.EntityModels.Landmark;
 import com.example.TourManager.Models.EntityModels.User;
-import com.example.TourManager.Models.Enums.NaturalTypes;
 import com.example.TourManager.Models.Enums.Regions;
+import com.example.TourManager.Models.Enums.NaturalTypes;
 import com.example.TourManager.Repositories.LandmarkRepository;
 import com.example.TourManager.Repositories.AuthRepositories.UserRepo;
 import com.example.TourManager.Services.AuthServices.UserService;
@@ -122,11 +122,14 @@ public class LandmarkService {
         }
         pageFilter.type = "natural";
         pageFilter.value = naturalType.name().toLowerCase();
+        pageFilter.bulgarianValue = naturalType.getNaturalTypeName();
     }
 
     public void getAllEntitiesForHistoricalRegion(Regions historicalRegion) {
         clearFilteredLists();
         removeFilters();
+        var name1 = historicalRegion.name();
+        var name2 = historicalRegion.getHistoricalRegionName();
 
         if (historicalRegion != null) {     
             filteredList = this.GetAll()
@@ -137,6 +140,7 @@ public class LandmarkService {
         }
         pageFilter.type = "historical";
         pageFilter.value = historicalRegion.name().toLowerCase();
+        pageFilter.bulgarianValue = historicalRegion.getHistoricalRegionName();
     }
 
     public void clearFilteredLists(){
@@ -145,7 +149,7 @@ public class LandmarkService {
     }
 
     public void createFilter() {
-        pageFilter = new Filter("", "");
+        pageFilter = new Filter("", "", "");
     }
 
     public void removeFilters() {
