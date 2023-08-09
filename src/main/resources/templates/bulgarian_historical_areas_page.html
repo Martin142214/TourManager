@@ -23,14 +23,14 @@
                 <h1 class="pageTitle">Исторически забележителности</h1>
                 <div class="column" id="leftColumn">
                     <div>
-                        <h1 class="sectionTitle">Региони</h1>
+                        <h1 class="sectionTitle">Видове</h1>
                         <ul class="allFilters">
                             <li th:each="region : ${T(com.example.TourManager.Models.Enums.Regions).values()}">
                                 <form th:action="@{/offers/region/filter}" method="post" style="margin: 0;">
                                     <input type="hidden" name="historicalRegion" th:value="${region.name()}">
                                     
                                     <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
-                                        <span id="regionName" th:text="${#strings.replace(region,'_',' ')}"></span>
+                                        <span id="regionName" th:text="${#strings.replace(region.getHistoricalRegionName(),'_',' ')}"></span>
                                     </button>
                                 </form>
                             </li>

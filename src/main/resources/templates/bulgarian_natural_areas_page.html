@@ -23,14 +23,14 @@
                 <h1 class="pageTitle">Природни забележителности</h1>
                 <div class="column" id="leftColumn">
                     <div>
-                        <h1 class="sectionTitle">Видове</h1>
+                        <h1 class="sectionTitle">Региони</h1>
                         <ul class="allFilters">
                             <li th:each="type : ${T(com.example.TourManager.Models.Enums.NaturalTypes).values()}">
                                 <form th:action="@{/offers/type/filter}" method="post" style="margin: 0;">
                                     <input type="hidden" name="naturalType" th:value="${type.name()}">
                                     
                                     <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
-                                        <span id="typeName" th:text="${#strings.replace(type,'_',' ')}"></span>
+                                        <span id="typeName" th:text="${#strings.replace(type.getNaturalTypeName(),'_',' ')}"></span>
                                     </button>
                                 </form>
                             </li>
